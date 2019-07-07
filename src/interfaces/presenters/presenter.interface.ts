@@ -1,4 +1,6 @@
 export interface IPresenter {
-    initialize(): void;
-    toGrabCookie(): void;
+    showSettingPanel(): void;
+    hideSettingPanel(): void;
+    
+    showCharacterSelectionScene(): void;
 }
