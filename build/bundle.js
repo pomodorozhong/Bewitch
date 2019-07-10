@@ -4,65 +4,105 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const presenter_1 = require("./presenters/presenter");
 var presenter = new presenter_1.Presenter();
 
-},{"./presenters/presenter":3}],2:[function(require,module,exports){
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class CookieModel {
-    constructor() {
-        this.cookieCount = 0;
-    }
-    addCookie() {
-        this.cookieCount++;
-    }
-    getCookieCount() {
-        return this.cookieCount;
-    }
-}
-exports.CookieModel = CookieModel;
-},{}],3:[function(require,module,exports){
+},{"./presenters/presenter":2}],2:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const view_1 = require("../views/view");
-const cookieModel_1 = require("../models/cookieModel");
 class Presenter {
     constructor() {
         this.view = new view_1.View(document, this);
-        this.cookieModel = new cookieModel_1.CookieModel();
         this.initialize();
     }
-    // 這個函數，用來在網頁剛載入時，將畫面上顯示的東西與後台的資料同步
-    // 在目前的程式功能中，具體做的事情就是將畫面顯示的餅乾數量，與 Model 內的餅乾數量進行同步
     initialize() {
-        this.view.toSetCookieCount(this.cookieModel.getCookieCount());
+        this.showWelcomeScene();
     }
-    toGrabCookie() {
-        // Call Model function to update data.
-        this.cookieModel.addCookie();
-        // Call View function to update UI.
-        this.view.toSetCookieCount(this.cookieModel.getCookieCount());
+    showWelcomeScene() {
+        this.view.showSettingGear();
+        // this.view.showWitchPanel();
+        // this.view.showBird();
+    }
+    showSettingPanel() {
+        this.view.showSettingPanel();
+    }
+    hideSettingPanel() {
+        this.view.hideSettingPanel();
+    }
+    showCharacterSelectionScene() {
+        throw new Error("Method not implemented.");
     }
 }
 exports.Presenter = Presenter;
 
-},{"../models/cookieModel":2,"../views/view":4}],4:[function(require,module,exports){
+},{"../views/view":3}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class View {
     constructor(DOM, presenter) {
-        this.presenter = presenter;
+        this.settingGearId = "settingGear";
+        this.settingGearPicPath = "./resource/btn_setting.png";
+        this.settingPanelId = "settingPanel";
+        this.settingPanelPicPath = "./resource/sys_dialog.png";
+        this.witchPanelId = "witchPanel";
         this.DOM = DOM;
-        this.DOM
-            .getElementById("grabCookie")
-            .addEventListener("click", toGrabCookie);
-        var self = this;
-        // Event Handler
-        function toGrabCookie() {
-            self.presenter.toGrabCookie();
+        this.presenter = presenter;
+        this.body = this.DOM.getElementsByTagName("body")[0];
+    }
+    showSettingGear() {
+        // Check if already showed
+        let id = this.settingGearId;
+        let element = this.DOM.getElementById(id);
+        if (element != null) {
+            return;
+        }
+        // Add <img>
+        let htmlString = `<img id='${id}' src='${this.settingGearPicPath}'>`;
+        this.body.insertAdjacentHTML("beforeend", htmlString);
+        // Setup event handler
+        let self = this;
+        element = this.DOM.getElementById(id);
+        element.addEventListener('click', () => { self.presenter.showSettingPanel(); }, false);
+    }
+    hideSettingGear() {
+        throw new Error("Method not implemented.");
+    }
+    showSettingPanel() {
+        // Check if already showed
+        let id = this.settingPanelId;
+        let element = this.DOM.getElementById(id);
+        if (element != null) {
+            return;
+        }
+        // Add <img>
+        let htmlString = `<img id='${id}' src='${this.settingPanelPicPath}'>`;
+        this.body.insertAdjacentHTML("beforeend", htmlString);
+        // Setup event handler
+        let self = this;
+        element = this.DOM.getElementById(id);
+        element.addEventListener('click', () => { self.presenter.hideSettingPanel(); }, false);
+    }
+    hideSettingPanel() {
+        let node = this.DOM.getElementById(this.settingPanelId);
+        if (node.parentNode) {
+            node.parentNode.removeChild(node);
         }
     }
-    // DOM Manipulation
-    toSetCookieCount(cookieCount) {
-        this.DOM.getElementById("cookieCount").innerHTML = cookieCount.toString();
+    showBird() {
+        throw new Error("Method not implemented.");
+    }
+    hideBird() {
+        throw new Error("Method not implemented.");
+    }
+    showWitchPanel() {
+        // Hook event handler
+        var self = this;
+        this.DOM
+            .getElementById(this.witchPanelId)
+            .addEventListener("click", () => {
+            self.presenter.showCharacterSelectionScene();
+        });
+    }
+    hideWitchPanel() {
+        throw new Error("Method not implemented.");
     }
 }
 exports.View = View;
