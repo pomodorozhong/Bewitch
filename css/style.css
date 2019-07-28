@@ -1,3 +1,103 @@
+:root {
+    --screent-width: 375px;
+    --screent-height: 667px;
+    --bird-width: 47px;
+}
+
+#characterIcon1 {
+    position: absolute;
+    width: 73px;
+    height: 73px;
+    margin-top: 459px;
+    margin-left: 27px;
+    background-color: #d8d8d8;
+}
+
+#characterIcon2 {
+    position: absolute;
+    width: 73px;
+    height: 73px;
+    margin-top: 459px;
+    margin-left: 110px;
+    background-color: #737373;
+}
+
+#characterIcon3 {
+    position: absolute;
+    width: 73px;
+    height: 73px;
+    margin-top: 459px;
+    margin-left: 193px;
+    background-color: #737373;
+}
+
+#characterIcon4 {
+    position: absolute;
+    width: 73px;
+    height: 73px;
+    margin-top: 459px;
+    margin-left: 276px;
+    background-color: #737373;
+}
+
+#selectButton {
+    position: absolute;
+    margin-left: 115px;
+    margin-top: 573px;
+    width: 145px;
+    height: 48px;
+}
+
+#bewitchText {
+    position: absolute;
+    margin-left: 27px;
+    margin-top: 445px;
+    width: 320px;
+    height: 136px;
+}
+
+#bird2 {
+    position: absolute;
+    margin-left: 164px;
+    margin-top: 300px;
+    width: 47px;
+    height: 68px;
+    animation-name: bird-fly2;
+    animation-duration: 2s;
+    animation-timing-function: steps(100);
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+#bird2 *:after {
+    animation-play-state: paused !important;
+}
+
+#bird1 {
+    position: absolute;
+    margin-left: 202px;
+    margin-top: 197px;
+    width: 47px;
+    height: 68px;
+    animation-name: bird-fly1;
+    animation-duration: 2s;
+    animation-timing-function: steps(100);
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+#bird1 *:after {
+    animation-play-state: paused !important;
+}
+
+#witch {
+    position: absolute;
+    margin-left: 25px;
+    margin-top: 62px;
+    width: 326px;
+    height: 436px;
+}
+
 #settingGear {
     position: absolute;
     margin-left: 15px;
@@ -14,11 +114,6 @@
     height: 365px;
 }
 
-html {
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
 body {
     margin-left: 0%;
     margin-top: 0%;
@@ -30,4 +125,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    background-color: #ffffff;
+    position: absolute;
+    overflow: hidden;
 }

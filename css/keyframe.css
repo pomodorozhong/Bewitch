@@ -1,0 +1,28 @@
+:root {
+    --screent-width: 375px;
+    --screent-height: 667px;
+    --bird-width: 47px;
+    --bird-height: 68px;
+}
+
+@keyframes bird-fly1 {
+    0% {
+        margin-left: 202px;
+        margin-top: 197px;
+    }
+    100% {
+        margin-left: calc((var(--screent-width) - var(--bird-width))/2);
+        margin-top: var(--screent-height);
+    }
+}
+
+@keyframes bird-fly2 {
+    0% {
+        margin-left: calc((var(--screent-width) - var(--bird-width))/2);
+        margin-top: calc(0 - var(--bird-height));
+    }
+    100% {
+        margin-left: calc((var(--screent-width) - var(--bird-width))/2);
+        margin-top: 300px;
+    }
+}

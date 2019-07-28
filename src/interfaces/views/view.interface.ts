@@ -8,11 +8,17 @@ export interface IView {
 
     // Welcome scene
     showBird(): void;
+    moveBirdOut(): void;
     hideBird(): void;
-    showWitchPanel(): void;
-    hideWitchPanel(): void;
+    showWitch(): void;
+    hideWitch(): void;
+    showBewitchText(): void;
+    hideBewitchText(): void;
 
     // Character Selection scene
-    
-
+    moveBirdIn(): void;
+    showSelectButton(): void;
+    hideSelectButton(): void;
+    showCharacterIcon(): void;
+    hideCharacterIcon(): void;
 }

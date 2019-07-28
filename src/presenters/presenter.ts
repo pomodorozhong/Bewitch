@@ -2,7 +2,7 @@ import { IPresenter } from "../interfaces/presenters/presenter.interface";
 import { IView } from "../interfaces/views/view.interface";
 import { View } from "../views/view"
 
-export class Presenter implements IPresenter{
+export class Presenter implements IPresenter {
     private view: IView;
 
     constructor() {
@@ -11,14 +11,8 @@ export class Presenter implements IPresenter{
         this.initialize();
     }
 
-    initialize() {
+    initialize(): void {
         this.showWelcomeScene();
-    }
-
-    showWelcomeScene() {
-        this.view.showSettingGear();
-        // this.view.showWitchPanel();
-        // this.view.showBird();
     }
 
     showSettingPanel(): void {
@@ -27,7 +21,26 @@ export class Presenter implements IPresenter{
     hideSettingPanel(): void {
         this.view.hideSettingPanel();
     }
+
+    showWelcomeScene(): void {
+        this.view.showSettingGear();
+        this.view.showWitch();
+        this.view.showBird();
+        this.view.showBewitchText();
+    }
+
+    moveBirdOut(): void {
+        this.view.moveBirdOut();
+    }
+    moveBirdIn(): void {
+        this.view.hideBird();
+        this.view.hideBewitchText();
+        this.view.hideWitch();
+        
+        this.view.moveBirdIn();
+    }
     showCharacterSelectionScene(): void {
-        throw new Error("Method not implemented.");
+        this.view.showCharacterIcon();
+        this.view.showSelectButton();
     }
 }
